@@ -17,6 +17,7 @@ public class TradeReport {
 		List<TradeTO> listOfIncomingTrade = new ArrayList<TradeTO>();
 		List<TradeTO> listOfOutgoingTrade = new ArrayList<TradeTO>();
 		double tempAmt=0;
+		if(listOfTrade!=null && !listOfTrade.isEmpty()){
 		for(TradeTO tradeTO: listOfTrade){
 			Calendar actualSettlement = DateUtil.calculateSettlementDate(tradeTO.getSettlementDate(), tradeTO.getCurrency());
 			if(tradeTO.getSettlementDate().compareTo(actualSettlement.getTime())==0){
@@ -42,6 +43,8 @@ public class TradeReport {
 		Collections.sort(listOfIncomingTrade, new AmountComparator());
 		System.out.println("Ranking of incoming entities, Highest on top:-" );
 		printTarde(listOfIncomingTrade);
+		}
+		
 	}
 	private void printTarde(List<TradeTO> listOfTrade){
 		for(TradeTO inTradeTO: listOfTrade){
